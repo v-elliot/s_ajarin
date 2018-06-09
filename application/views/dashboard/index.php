@@ -1,5 +1,6 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+  <?php if($this->session->userdata('hak_akses') == "Admin"){ ?>
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -516,4 +517,28 @@
 
     </section>
     <!-- /.content -->
+  <?php } ?>
+  <?php if($this->session->userdata('hak_akses') == "Peserta"){ ?>
+    <div class="container">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Dashboard
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="<?php echo site_url('dashboard') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="callout callout-info">
+          <marquee><p>Welcome <?php echo $this->session->userdata('username') ?> Selamat Belajar <i class="fa fa-smile-o"></i></p></marquee>
+        </div>
+        <!-- /.box -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.container -->
+  <?php } ?>
   </div>
