@@ -25,7 +25,9 @@
 
 		function trash($where,$table){
 			$this->db->where($where);
-			$this->db->delete($table);
+			$row = $this->db->get($table)->row();
+			unlink("./assets/event/image/".$row->path_event);
+			$this->db->delete($table,$where);
 		}
 	
 	}

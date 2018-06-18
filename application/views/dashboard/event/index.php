@@ -112,19 +112,19 @@
                         </div>
                         <div class="modal-body">
                             <?php echo form_open_multipart('event/tambah') ?>
-                              <select class="form-control" name="jenis">
-                                <option>-- Pilih Jenis Event --</option>
-                                <?php foreach($jenis as $j){ ?>
-                                <option value="<?php echo $j->id_jenis ?>"><?php echo $j->nama_jenis ?></option>
-                                <?php } ?>
-                              </select>
-                              <br>
                               <div class="form-group">
-                                <select class="form-control select2" multiple="multiple" data-placeholder="Pilih Level yang dapat berpartisipasi" style="width: 100%;" name="level">
-                                  <?php foreach($level as $l){ ?>
-                                  <option value="<?php echo $l->nama_level ?>"><?php echo $l->nama_level ?></option>
+                                <select class="form-control select2" name="jenis" style="width: 100%">
+                                  <option>-- Pilih Jenis Event --</option>
+                                  <?php foreach($jenis as $j){ ?>
+                                  <option value="<?php echo $j->id_jenis ?>"><?php echo $j->nama_jenis ?></option>
                                   <?php } ?>
                                 </select>
+                              </div>
+                              <div class="form-group">
+                                <label class="label-control">Pilih Level Partisipasi :</label><br>
+                                <?php foreach($level as $l){ ?>
+                                  <input type="checkbox" name="level[]" class="flat-red" value="<?php echo $l->nama_level ?>">&nbsp;<?php echo $l->nama_level ?>
+                                <?php } ?>
                               </div>
                               <input type="text" name="event" class="form-control" placeholder="Nama Event"><br>
                               <div class="input-group date">

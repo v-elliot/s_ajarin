@@ -17,6 +17,7 @@
 			$harga = $this->input->post('harga');
 			$status = $this->input->post('status');
 			$level = $this->input->post('level');
+			$partisipan = implode(",", $level);
 			$gambar = $_FILES['path']['name'];
 			$config['upload_path'] = './assets/event/image';
 			$config['allowed_types'] = 'jpg|png';
@@ -28,7 +29,7 @@
 
 			$data = array(
 				'id_jenis' => $jenis,
-				'id_level' => $level,
+				'id_level' => $partisipan,
 				'nama_event' => $event,
 				'tgl_mulai' => $mulai,
 				'tgl_akhir' => $akhir,
@@ -39,8 +40,7 @@
 			);
 
 			$this->m_event->create($data,'event');
-			var_dump($data);
-			//redirect('admin/kelola_event');
+			redirect('admin/kelola_event');
 		}
 
 		function edit($id){
