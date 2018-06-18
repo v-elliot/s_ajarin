@@ -54,6 +54,5 @@ $route['login'] = 'home/login';
 $route['register'] = 'home/register';
 $route['materi'] = 'admin/materi';
 $route['soal'] = 'admin/soal';
-$route['profil/(:any)'] = 'dashboard/profil/';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

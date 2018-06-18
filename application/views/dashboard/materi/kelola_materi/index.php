@@ -87,7 +87,7 @@
             
             <!-- /.box-header -->
             <div class="box-body">
-              <a href="<?php echo site_url('materi') ?>" class="btn btn-info btn-xs"><i class="fa fa-plus">&nbsp;Tambah</i></a>  
+              <a href="<?php echo site_url('materi/create') ?>" class="btn btn-info btn-xs"><i class="fa fa-plus">&nbsp;Tambah</i></a>  
               <table class="table table-bordered table-striped" id="mydata">
                 <thead>
                 <tr>

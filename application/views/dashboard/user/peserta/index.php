@@ -91,12 +91,12 @@
             <div class="box-body">
               <label class="control-label">Form Pencarian</label>
               <form action="" method="post">
-                <div class="form-group">
-                  <input type="text" name="keyword" class="form-control" placeholder="Masukkan Username atau Level yang ingin dicari">
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-info btn-xs"><i class="fa fa-search"></i>&nbsp;Cari</button>
-                </div>
+                 <div class="input-group margin">
+                    <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-info btn-flat"><i class="fa fa-search"></i>&nbsp;Cari</button>
+                        </span>
+                  </div>
               </form>
             </div>
           </div>

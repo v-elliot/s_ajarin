@@ -8,7 +8,7 @@
 			parent::__construct();
 		}
 	
-		public function index()
+		public function create()
 		{
 			$data = array(
 				'kategori' => $this->m_kategori->list_kategori()->result(),
@@ -18,6 +18,8 @@
 			$this->load->view('dashboard/materi/kelola_materi/create',$data);
 			$this->load->view('dashboard/footer');
 		}
+
+
 
 		function tambah(){
 			$judul = $this->input->post('judul');

@@ -109,9 +109,10 @@
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
-                <form action="#" method="post">
+                <form action="<?php echo site_url('profil/tambah_post') ?>" method="post">
                   <div class="form-group">
-                    <textarea class="form-control" placeholder="Bagikan pengalaman anda <?php echo $this->session->userdata('username') ?>" id="textarea"></textarea>
+                    <input type="hidden" name="id" class="form-control" value="<?php echo $this->session->userdata('id') ?>">
+                    <textarea class="form-control" name="post" placeholder="Bagikan pengalaman anda <?php echo $this->session->userdata('username') ?>" id="textarea"></textarea>
                     <p id="text_counter"></p>
                   </div>
                   <div class="form-group">
@@ -120,22 +121,20 @@
                 </form>
                 <hr>
                 <!-- Post -->
+              <?php foreach($posting as $p){ ?>
+                <?php if($p->id_user == $this->session->userdata('id')){ ?>
                 <div class="post">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="<?php echo base_url() ?>assets/dashboard/dist/img/user1-128x128.jpg" alt="user image">
+                    <img class="img-circle img-bordered-sm" src="<?php echo base_url('assets/images/dp/'.$this->session->userdata('path')) ?>" alt="user image">
                         <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
+                          <?php echo $this->session->userdata('username') ?>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
-                    <span class="description">Shared publicly - 7:30 PM today</span>
+                    <span class="description">Shared - <?php echo date("h:m:s", strtotime($p->tgl_timeline)) ?></span>
                   </div>
                   <!-- /.user-block -->
                   <p>
-                    Lorem ipsum represents a long-held tradition for designers,
-                    typographers and the like. Some people hate it and argue for
-                    its demise, but others ignore the hate as they create awesome
-                    tools to help create filler text for everyone from bacon lovers
-                    to Charlie Sheen fans.
+                    <?php echo $p->isi_timeline ?>
                   </p>
                   <ul class="list-inline">
                     <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
@@ -143,11 +142,13 @@
                     </li>
                     <li class="pull-right">
                       <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
+                        (0)</a></li>
                   </ul>
 
                   <input class="form-control input-sm" type="text" placeholder="Type a comment">
                 </div>
+                <?php } ?>
+              <?php } ?>
                 <!-- /.post -->
               </div>
               <div class="tab-pane" id="settings">

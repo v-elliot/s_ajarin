@@ -12,6 +12,14 @@
 			$this->db->where($where);
 			$this->db->update($table,$data);
 		}
+
+		function post_user(){
+			return $this->db->get('timeline');
+		}
+
+		function create_post($data,$table){
+			$this->db->insert($table,$data);
+		}
 	
 	}
 	

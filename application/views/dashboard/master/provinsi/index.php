@@ -28,7 +28,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-body">  
-              <table class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th class="text-center">No</th>
@@ -36,20 +36,20 @@
                   <th class="text-center">Action</th>
                 </tr>
                 </thead>
-                <?php $no = $this->uri->segment(3) + 1; foreach($provinsi as $p){ ?>
+                <?php $no =  1; foreach($provinsi as $p){ ?>
                 <tbody>
                     <tr>
-                        <td class="text-center"><?php echo $no++ ?></td>
-                        <td><?php echo $p->nama_provinsi ?></td>
+                        <td class="text-center"><?php echo $no; ?></td>
+                        <td><?php echo $p->nama_provinsi; ?></td>
                         <td class="text-center">
                             <a href="<?php echo site_url('provinsi/edit/'.$p->id_provinsi) ?>" class="btn btn-info btn-xs"><i class="fa fa-edit"></i>&nbsp;Edit</a>
                             <a href="<?php echo site_url('provinsi/hapus/'.$p->id_provinsi) ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>&nbsp;Hapus</a>
                         </td>
                     </tr>
                 </tbody>
-                <?php } ?>
+                <?php $no++; } ?>
               </table>
-              <?php echo $this->pagination->create_links() ?>
+              
             </div>
             <!-- /.box-body -->
           </div>

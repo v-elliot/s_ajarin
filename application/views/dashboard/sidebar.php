@@ -17,8 +17,6 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/dashboard/dist/css/skins/_all-skins.min.css">
-  <!-- Morris chart -->
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/dashboard/bower_components/morris.js/morris.css">
   <!-- jvectormap -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/dashboard/bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Date Picker -->
@@ -31,12 +29,37 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/dashboard/plugins/iCheck/all.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/dashboard/bower_components/select2/dist/css/select2.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/dashboard/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
+  <!-- Teks Editor -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/editor/codemirror/lib/codemirror.css" />
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/editor/css/dialog.css" />
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/editor/css/style.css" />
+
+  <script src="<?php echo base_url() ?>assets/editor/codemirror/lib/codemirror.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/codemirror/mode/xml/xml.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/codemirror/mode/css/css.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/codemirror/mode/javascript/javascript.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/codemirror/mode/php/php.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/codemirror/mode/clike/clike.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/js/emmet.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/js/jquery.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/js/color-picker.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/js/xml-fold.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/js/matchtags.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/js/searchcursor.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/js/match-highlighter.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/js/dialog.js"></script>
+  <script src="<?php echo base_url() ?>assets/editor/js/search.js"></script>
+  <!-- Teks Editor --> 
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -177,7 +200,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo site_url('profil/'.$this->session->userdata('username')) ?>" class="btn btn-success btn-flat"><i class="fa fa-user"></i>&nbsp;Profile</a>
+                  <a href="<?php echo site_url('dashboard/profil/'.$this->session->userdata('username')) ?>" class="btn btn-success btn-flat"><i class="fa fa-user"></i>&nbsp;Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="<?php echo site_url('auth/logout') ?>" class="btn btn-warning btn-flat"><i class="fa fa-sign-out"></i>&nbsp;Log Out</a>
@@ -275,6 +298,11 @@
             <i class="fa fa-file"></i> <span>Laporan</span>
           </a>
         </li>
+        <li>
+          <a href="<?php echo site_url('dashboard/lini_masa') ?>">
+            <i class="fa fa-clock-o"></i> <span>Timeline</span>
+          </a>
+        </li>
         <?php } ?>
         <?php if($this->session->userdata('hak_akses') == "Mentor"){ ?>
         <li>
@@ -293,6 +321,11 @@
             <li><a href="<?php echo site_url('soal') ?>"><i class="fa fa-circle-o"></i> Pertanyaan</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Rekap Tes</a></li>
           </ul>
+        </li>
+        <li>
+          <a href="<?php echo site_url('dashboard/lini_masa') ?>">
+            <i class="fa fa-clock-o"></i> <span>Timeline</span>
+          </a>
         </li>
         <?php } ?>
         
@@ -316,17 +349,18 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Materi</a></li>
+          <ul class="nav navbar-nav" id="nav">
+            <li><a href="<?php echo site_url('dashboard/materi') ?>">Materi</a></li>
             <li><a href="#">Tes</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Text Editor <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Front-End (HTML, CSS, Javascript)</a></li>
+                <li><a href="<?php echo site_url('dashboard/editor_front') ?>">Front-End (HTML, CSS, Javascript)</a></li>
                 <li><a href="#">Back-End (PHP)</a></li>
               </ul>
             </li>
-            <li><a href="#">Timeline</a></li>
+            <li><a href="<?php echo site_url('dashboard/lini_masa') ?>">Timeline</a></li>
+            <li><a href="#">Event</a></li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -349,7 +383,7 @@
                       <a href="#">
                         <div class="pull-left">
                           <!-- User Image -->
-                          <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                          <img src="<?php echo base_url() ?>assets/dashboard/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                         </div>
                         <!-- Message title and timestamp -->
                         <h4>
@@ -462,7 +496,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="<?php echo site_url('profil/'.$this->session->userdata('username')) ?>" class="btn btn-success btn-flat"><i class="fa fa-user"></i>&nbsp;Profile</a>
+                    <a href="<?php echo site_url('dashboard/profil/'.$this->session->userdata('username')) ?>" class="btn btn-success btn-flat"><i class="fa fa-user"></i>&nbsp;Profile</a>
                   </div>
                   <div class="pull-right">
                     <a href="<?php echo site_url('auth/logout') ?>" class="btn btn-warning btn-flat"><i class="fa fa-sign-out"></i>&nbsp;Log out</a>

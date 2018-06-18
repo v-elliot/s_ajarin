@@ -42,9 +42,10 @@
 			$where = array('id_user' => $id);
 			$this->m_profil->replace_pict($where,$data,'user');
 			$this->session->set_userdata($data);
-			$this->load->view('dashboard/sidebar');
-			$this->load->view('dashboard/profil',$data);
-			$this->load->view('dashboard/footer');
+			// $this->load->view('dashboard/sidebar');
+			// $this->load->view('dashboard/profil',$data);
+			// $this->load->view('dashboard/footer');
+			redirect('dashboard/'.$this->session->userdata('username'));
 		}
 
 		function update_data(){
@@ -65,7 +66,22 @@
 			$this->session->set_userdata($data);
 
 			//var_dump($where,$data);
-			redirect('dashboard/profil');
+			redirect('dashboard/'.$this->session->userdata('username'));
+		}
+
+		function tambah_post(){
+			$posting = $this->input->post('post');
+			$id = $this->input->post('id');
+
+
+			$data = array(
+				'id_user' => $id,
+				'isi_timeline' => $posting,
+			);
+			
+			//var_dump($data);
+			$this->m_profil->create_post($data,'timeline');
+			redirect('dashboard/profil/'.$this->session->userdata('username'));
 		}
 	
 	}
